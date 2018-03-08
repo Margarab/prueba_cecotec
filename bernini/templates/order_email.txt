@@ -1,0 +1,11 @@
+Order {{order.id}}
+
+Client: {{ order.client.name }} {{ order.client.email}}
+Date: {{ order.timestamp|date:"d/M/Y H:m" }}
+Items:
+{% for item in order.items.all %}
+    {{ item.product.name }} x{{ item.quantity}} | {{item.product.ean}}
+{% endfor %}
+Total: {{ order.get_total_price }}€
+
+Order in csv is attached to this email.

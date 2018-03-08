@@ -1,1 +1,3 @@
 superuser: admin admin@bernini.com p4$$w0rd
+client1 p4$$w0rd
+client2 p4$$w0rd

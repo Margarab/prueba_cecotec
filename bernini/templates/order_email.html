@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Order</title>
+</head>
+<body>
+    <p>
+        <b>Client:</b> {{ order.client.name }}  {{ order.client.email}}
+    </p>
+    <p>
+        <b>Date:</b> {{ order.timestamp|date:"d/M/Y H:m" }}
+    </p>
+    <p>
+        <b>Items:</b>
+        {% for item in order.items.all %}
+            {{ item.product.name }} x{{ item.quantity}} | {{item.product.ean}}
+        {% endfor %}
+    </p>
+    <br>
+    <p>
+        Total: {{ order.get_total_price }}€
+    </p>
+    <br>
+    <code>Order in csv is attached to this email.</code>
+</body>
+</html>
