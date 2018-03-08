@@ -48,3 +48,4 @@ API REST with [Django REST Framework](http://www.django-rest-framework.org/)
     - /api/products/?format=json : Product List in json
     - /admin/ : Site administration
 
+
