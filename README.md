@@ -10,6 +10,8 @@ Go to the repository directory and launch server:
 
     python manage.py runserver
 
+
+
 ## Settings
 When DEBUG is True, the email is output to the console. To change this behaviour, change DEBUG to False and provide user and password in email settings
 
@@ -40,11 +42,13 @@ User admin has permission for add, edit and delete all objects
 
 Users client only has permissions for add orders. Doesn't has permissions to do anything in admin pages.
 
-## API
+## Site map
 API REST with [Django REST Framework](http://www.django-rest-framework.org/)
 
+    - / : Orders management
     - /api/ : Api ROOT
     - /api/products/ : Product List
     - /api/products/?format=json : Product List in json
     - /admin/ : Site administration
+
 

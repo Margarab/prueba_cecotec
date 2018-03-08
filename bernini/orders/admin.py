@@ -23,13 +23,14 @@ class OrderAdmin(admin.ModelAdmin):
     ]
     actions = [download_csv]
 
+    def save_formset(self, request, form, formset, change):
+        instances = formset.save()
+        instances[0].order.send_email()
 
     def save_model(self, request, obj, form, change):
         if obj.id is None:
             obj.client = request.user
         obj.save()
-        form.save_m2m()
-        obj.send_email()
 
 admin_site = MyAdminSite(name='myadmin')
 admin_site.register(Order, OrderAdmin)
