@@ -123,3 +123,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 ORDERS_EMAIL = 'margarab58@gmail.com'
+
+# Django REST Framework settings
+# http://www.django-rest-framework.org/api-guide/permissions/#djangomodelpermissions
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissions',
+    )
+}

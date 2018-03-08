@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers, serializers, viewsets
 from products import models as product_models
+from orders.admin import admin_site
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -28,11 +29,14 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = product_models.Product.objects.all()
     serializer_class = ProductSerializer
 
+
 router = routers.DefaultRouter()
 router.register(r'products', ProductViewSet)
 
 urlpatterns = [
+    path('',admin_site.urls),
     path('admin/', admin.site.urls),
-    url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api/', include(router.urls))
+
 ]
