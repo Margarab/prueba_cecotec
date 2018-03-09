@@ -1,4 +1,4 @@
-# Caso Práctico Zapatos Bernini
+﻿# Caso Práctico Zapatos Bernini
 
 ## Set Up
 Clone repository and install requirements with:
@@ -53,6 +53,7 @@ API REST with [Django REST Framework](http://www.django-rest-framework.org/)
 
 ## Comments
 > Admin can download an order in csv format from /orders/order/, selecting actiong 'Download order in CSV'
-> When gmail cregentials are provided in settings, order in csv is attached to email.
+
+> When gmail credentials are provided in settings, order in csv is attached to email.
 
 
