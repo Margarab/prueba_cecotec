@@ -6,13 +6,15 @@ Clone repository and install requirements with:
     pip install -r requirements.txt
 
 
-Go to the repository directory and launch server:
+Go to <repository_directory>/bernini/ and launch server:
 
     python manage.py runserver
 
 
 
 ## Settings
+Recipient email is set in setting `ORDERS_EMAIL`.
+
 If user and password for gmail are provided, email is sent through gmail. Else, email output is sent to console.
 
     EMAIL_HOST = 'smtp.gmail.com'
@@ -28,8 +30,6 @@ If user and password for gmail are provided, email is sent through gmail. Else, 
     # Output email messages for console
     else:
         EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-Recipient email is set in setting ORDERS_EMAIL.
 
 
 ## Users
