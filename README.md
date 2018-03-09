@@ -57,6 +57,8 @@ API REST with [Django REST Framework](http://www.django-rest-framework.org/)
     - /login/ : Login page
 
 ## Comments
+> sqlite3 database with data is provided. A fixture file with initial data is also provided.
+
 > Admin can download orders in csv format from /orders/order/, selecting action 'Download order in CSV'
 
 > Order in csv is attached to email.
