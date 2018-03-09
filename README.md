@@ -29,6 +29,8 @@ If user and password for gmail are provided, email is sent through gmail. Else, 
     else:
         EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+Recipient email is set in setting ORDERS_EMAIL.
+
 
 ## Users
 > Login as admin

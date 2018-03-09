@@ -137,10 +137,10 @@ else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-DEFAULT_FROM_EMAIL = 'marta@aravolo.com'
+DEFAULT_FROM_EMAIL = 'orders@bernini.com'
 
 # Mail that receives orders
-ORDERS_EMAIL = 'marta@aravolo.com'
+ORDERS_EMAIL = 'orders@bernini.com'
 
 
 
