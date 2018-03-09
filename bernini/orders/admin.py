@@ -16,12 +16,15 @@ def download_csv(modeladmin, request, queryset):
 download_csv.short_description = "Download order in CSV"
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'timestamp', 'client',)
+    list_display = ('id', 'timestamp', 'client', 'total')
     exclude = ['client',]
     inlines = [
         ProductInline,
     ]
     actions = [download_csv]
+
+    def total(self, obj):
+        return "{}€".format(obj.get_total_price)
 
     def save_formset(self, request, form, formset, change):
         instances = formset.save()

@@ -13,7 +13,7 @@ Go to the repository directory and launch server:
 
 
 ## Settings
-When DEBUG is True, the email is output to the console. To change this behaviour, change DEBUG to False and provide user and password in email settings
+When DEBUG is True, the email output is sent to the console. To change this behaviour, change DEBUG to False and provide user and password in email settings
 
     if DEBUG:
         EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
@@ -27,28 +27,32 @@ When DEBUG is True, the email is output to the console. To change this behaviour
 
 
 ## Users
-> To login as admin
+> Login as admin
 
     user: admin  password:p4$$w0rd
 
-User admin has permission for add, edit and delete all objects
+User admin have permission to add, edit and delete all objects
 
 
-> To login as client
+> Login as client
 
     user: client1  password:p4$$w0rd
 
     user: client2  password:p4$$w0rd
 
-Users client only has permissions for add orders. Doesn't has permissions to do anything in admin pages.
+Users client only have permissions to add orders.
 
-## Site map
+## Sitemap
 API REST with [Django REST Framework](http://www.django-rest-framework.org/)
 
-    - / : Orders management
+    - / : Orders management (User admin and client have different permissions)
     - /api/ : Api ROOT
     - /api/products/ : Product List
     - /api/products/?format=json : Product List in json
-    - /admin/ : Site administration
+    - /admin/ : Users and Products management (Only for user admin)
+
+## Comments
+> Admin can download an order in csv format from /orders/order/, selecting actiong 'Download order in CSV'
+> When gmail cregentials are provided in settings, order in csv is attached to email.
 
 
