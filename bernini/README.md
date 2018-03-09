@@ -13,17 +13,21 @@ Go to the repository directory and launch server:
 
 
 ## Settings
-When DEBUG is True, the email output is sent to the console. To change this behaviour, change DEBUG to False and provide user and password in email settings
+If user and password for gmail are provided, email is sent through gmail. Else, email output is sent to console.
 
-    if DEBUG:
-        EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
-    else:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+
+    # if provide credentials, send mail through gmail smtp server
+    if EMAIL_HOST_USER != '' and EMAIL_HOST_PASSWORD != '':
         EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-        EMAIL_HOST = "smtp.gmail.com"
-        EMAIL_HOST_USER = ""
-        EMAIL_HOST_PASSWORD = ""
-        EMAIL_PORT = 587
-        EMAIL_USE_TLS = True
+
+    # Output email messages for console
+    else:
+        EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 ## Users
@@ -50,10 +54,11 @@ API REST with [Django REST Framework](http://www.django-rest-framework.org/)
     - /api/products/ : Product List
     - /api/products/?format=json : Product List in json
     - /admin/ : Users and Products management (Only for user admin)
+    - /login/ : Login page
 
 ## Comments
-> Admin can download an order in csv format from /orders/order/, selecting actiong 'Download order in CSV'
+> Admin can download orders in csv format from /orders/order/, selecting action 'Download order in CSV'
 
-> When gmail credentials are provided in settings, order in csv is attached to email.
+> Order in csv is attached to email.
 
 

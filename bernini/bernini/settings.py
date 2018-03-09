@@ -122,23 +122,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Output email messages for console
-if DEBUG:
-    EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-# Fill user and password for gmail account
-else:
+# if provide credentials, send mail through gmail smtp server
+if EMAIL_HOST_USER != '' and EMAIL_HOST_PASSWORD != '':
     EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = "smtp.gmail.com"
-    EMAIL_HOST_USER = ""
-    EMAIL_HOST_PASSWORD = ""
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = 'margarab58@gmail.com'
+# Output email messages for console
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+DEFAULT_FROM_EMAIL = 'marta@aravolo.com'
 
 # Mail that receives orders
-ORDERS_EMAIL = 'orders@bernini.com'
+ORDERS_EMAIL = 'marta@aravolo.com'
 
 
 

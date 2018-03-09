@@ -3,13 +3,14 @@ from django.db import models
 from django.core import validators
 from django.contrib.auth import models as auth_models
 from django.utils.translation import ugettext_lazy as _
-from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 import csv
 import uuid
 import decimal
+import datetime
+from io import StringIO
 from products import models as products_models
 
 
@@ -34,12 +35,11 @@ class Order(models.Model):
     )
 
     def get_csv(self):
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="order_{0}.csv"'.format(self.id)
-        writer = csv.writer(response)
+        csvfile = StringIO()
+        writer = csv.writer(csvfile)
         for item in self.items.all():
-            writer.writerow([item.product.name, item.product.ean, item.quantity])
-        return response
+            writer.writerow([self.id, item.product.name, item.product.ean, item.quantity, self.client.username, datetime.datetime.strftime(self.timestamp, '%y-%m-%d %H:%M')])
+        return csvfile.getvalue()
 
     def send_email(self):
         email_msg = EmailMultiAlternatives(
@@ -48,9 +48,8 @@ class Order(models.Model):
             settings.DEFAULT_FROM_EMAIL,
             [settings.ORDERS_EMAIL]
         )
-        if not settings.DEBUG:
-            email_msg.attach_alternative(render_to_string('order_email.html', {'order': self}), "text/html")
-            email_msg.attach('order_{0}.csv'.format(self.id), self.get_csv())
+        email_msg.attach_alternative(render_to_string('order_email.html', {'order': self}), "text/html")
+        email_msg.attach('order_{0}.csv'.format(self.id), self.get_csv(), "text/csv")
         email_msg.send(fail_silently=False)
 
 

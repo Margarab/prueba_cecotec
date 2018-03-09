@@ -6,15 +6,15 @@
 </head>
 <body>
     <p>
-        <b>Client:</b> {{ order.client.name }}  {{ order.client.email}}
+        <b>Client:</b> {{ order.client.username }}  {{ order.client.email}}
     </p>
     <p>
         <b>Date:</b> {{ order.timestamp|date:"d/M/Y H:m" }}
     </p>
     <p>
-        <b>Items:</b>
+        <b>Items:</b><br>
         {% for item in order.items.all %}
-            {{ item.product.name }} x{{ item.quantity}} | {{item.product.ean}}
+            {{ item.product.name }} x{{ item.quantity}} | {{item.product.ean}}<br>
         {% endfor %}
     </p>
     <br>
